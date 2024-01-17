@@ -1,4 +1,4 @@
-# SQL-Case-Study-1---Danny-s-Diner
+# SQL-Case_Study_1_Danny_s_Diner
 
 ![image](https://github.com/e19931107/SQL-Case-Study-1---Danny-s-Diner/assets/50692450/8da398ce-17df-401e-885f-9b8aaad46dff)
 
