@@ -7,9 +7,8 @@
 SELECT s.customer_id,
 SUM(f.price) AS total_amount
 FROM dannys_diner.sales AS s
-FULL JOIN dannys_diner.members AS m ON s.customer_id = m.customer_id
-FULL JOIN dannys_diner.menu AS f
-    ON s.product_id = f.product_id
+FULL JOIN dannys_diner.menu AS f 
+ON s.product_id = f.product_id
 GROUP BY s.customer_id
 ORDER BY s.customer_id;
 
