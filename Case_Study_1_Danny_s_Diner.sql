@@ -5,7 +5,7 @@
 -- 1. What is the total amount each customer spent at the restaurant?
 
 SELECT s.customer_id,
-SUM(f.price)
+SUM(f.price) AS total_amount
 FROM dannys_diner.sales AS s
 FULL JOIN dannys_diner.members AS m ON s.customer_id = m.customer_id
 FULL JOIN dannys_diner.menu AS f
@@ -13,7 +13,7 @@ FULL JOIN dannys_diner.menu AS f
 GROUP BY s.customer_id
 ORDER BY s.customer_id;
 
-| customer_id | sum |
+| customer_id | total_amount |
 | ----------- | --- |
 | A           | 76  |
 | B           | 74  |
@@ -23,7 +23,29 @@ ORDER BY s.customer_id;
 
 
 -- 2. How many days has each customer visited the restaurant?
+
+SELECT s.customer_id,
+COUNT(s.order_date) AS count_of_customer_visit
+FROM dannys_diner.sales AS s
+FULL JOIN dannys_diner.members AS m ON s.customer_id = m.customer_id
+FULL JOIN dannys_diner.menu AS f
+    ON s.product_id = f.product_id
+GROUP BY s.customer_id
+ORDER BY s.customer_id;
+
+| customer_id | count_of_customer_visit |
+| ----------- | ----------------------- |
+| A           | 6                       |
+| B           | 6                       |
+| C           | 3                       |
+
+-- [View on DB Fiddle](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/6231)
+
+
 -- 3. What was the first item from the menu purchased by each customer?
+
+
+
 -- 4. What is the most purchased item on the menu and how many times was it purchased by all customers?
 -- 5. Which item was the most popular for each customer?
 -- 6. Which item was purchased first by the customer after they became a member?
