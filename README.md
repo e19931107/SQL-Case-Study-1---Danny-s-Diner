@@ -130,3 +130,4 @@ The final members table captures the join_date when a customer_id joined the bet
 | B           | 2021-01-09T00:00:00.000Z |
 
 
+
