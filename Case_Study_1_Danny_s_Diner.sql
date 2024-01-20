@@ -12,13 +12,12 @@ ON s.product_id = f.product_id
 GROUP BY s.customer_id
 ORDER BY s.customer_id;
 
+Result:
 | customer_id | total_amount |
 | ----------- | --- |
 | A           | 76  |
 | B           | 74  |
 | C           | 36  |
-
--- [View on DB Fiddle](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/6231)
 
 
 -- 2. How many days has each customer visited the restaurant?
@@ -29,15 +28,14 @@ FROM dannys_diner.sales AS s
 GROUP BY s.customer_id
 ORDER BY s.customer_id;
 
+Result:
 | customer_id | count_of_customer_visit |
 | ----------- | ----------------------- |
 | A           | 4                       |
 | B           | 6                       |
 | C           | 2                       |
 
----
 
--- [View on DB Fiddle](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/6232)
 
 
 -- 3. What was the first item from the menu purchased by each customer?
