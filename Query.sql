@@ -93,6 +93,12 @@ WHERE `rank` = 1;
 | B           | ramen        | 2           |
 | C           | ramen        | 3           |
 
+WITH statement:
+https://www.educba.com/mysql-with/
+
+DENSE_RANK() function:
+https://www.mysqltutorial.org/mysql-window-functions/mysql-dense_rank-function/
+
 
 -- 6. Which item was purchased first by the customer after they became a member?
 -- 7. Which item was purchased just before the customer became a member?
