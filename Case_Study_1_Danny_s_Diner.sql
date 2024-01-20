@@ -1,7 +1,4 @@
-/* --------------------
-   Case Study Questions
-   --------------------*/
-
+-- Active: 1705586941775@@127.0.0.1@3306
 -- 1. What is the total amount each customer spent at the restaurant?
 
 SELECT s.customer_id,
