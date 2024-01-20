@@ -129,5 +129,7 @@ The final members table captures the join_date when a customer_id joined the bet
 | A           | 2021-01-07T00:00:00.000Z |
 | B           | 2021-01-09T00:00:00.000Z |
 
+![image](https://github.com/e19931107/SQL-Case_Study_1_Danny_s_Diner/assets/50692450/c9991c0c-c704-4150-af14-a7787ede22ca)
+
 
 
