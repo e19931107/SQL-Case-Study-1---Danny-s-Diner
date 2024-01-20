@@ -24,93 +24,95 @@ members
 ## Example Datasets
 All datasets exist within the dannys_diner database schema - be sure to include this reference within your SQL scripts as you start exploring the data and answering the case study questions.
 
-**Schema (PostgreSQL v13)**
+**Schema (MySQL v8.0)**
 
-    CREATE SCHEMA dannys_diner;
-    SET search_path = dannys_diner;
-    
-    CREATE TABLE sales (
-      "customer_id" VARCHAR(1),
-      "order_date" DATE,
-      "product_id" INTEGER
-    );
-    
-    INSERT INTO sales
-      ("customer_id", "order_date", "product_id")
-    VALUES
-      ('A', '2021-01-01', '1'),
-      ('A', '2021-01-01', '2'),
-      ('A', '2021-01-07', '2'),
-      ('A', '2021-01-10', '3'),
-      ('A', '2021-01-11', '3'),
-      ('A', '2021-01-11', '3'),
-      ('B', '2021-01-01', '2'),
-      ('B', '2021-01-02', '2'),
-      ('B', '2021-01-04', '1'),
-      ('B', '2021-01-11', '1'),
-      ('B', '2021-01-16', '3'),
-      ('B', '2021-02-01', '3'),
-      ('C', '2021-01-01', '3'),
-      ('C', '2021-01-01', '3'),
-      ('C', '2021-01-07', '3');
-     
-    
-    CREATE TABLE menu (
-      "product_id" INTEGER,
-      "product_name" VARCHAR(5),
-      "price" INTEGER
-    );
-    
-    INSERT INTO menu
-      ("product_id", "product_name", "price")
-    VALUES
-      ('1', 'sushi', '10'),
-      ('2', 'curry', '15'),
-      ('3', 'ramen', '12');
-      
-    
-    CREATE TABLE members (
-      "customer_id" VARCHAR(1),
-      "join_date" DATE
-    );
-    
-    INSERT INTO members
-      ("customer_id", "join_date")
-    VALUES
-      ('A', '2021-01-07'),
-      ('B', '2021-01-09');
+-- Create the schema
+CREATE SCHEMA dannys_diner;
+
+-- Switch to the schema
+USE dannys_diner;
+
+-- Create the sales table
+CREATE TABLE sales (
+  customer_id VARCHAR(1),
+  order_date DATE,
+  product_id INT
+);
+
+-- Insert data into the sales table
+INSERT INTO sales (customer_id, order_date, product_id) VALUES
+  ('A', '2021-01-01', 1),
+  ('A', '2021-01-01', 2),
+  ('A', '2021-01-07', 2),
+  ('A', '2021-01-10', 3),
+  ('A', '2021-01-11', 3),
+  ('A', '2021-01-11', 3),
+  ('B', '2021-01-01', 2),
+  ('B', '2021-01-02', 2),
+  ('B', '2021-01-04', 1),
+  ('B', '2021-01-11', 1),
+  ('B', '2021-01-16', 3),
+  ('B', '2021-02-01', 3),
+  ('C', '2021-01-01', 3),
+  ('C', '2021-01-01', 3),
+  ('C', '2021-01-07', 3);
+
+-- Create the menu table
+CREATE TABLE menu (
+  product_id INT,
+  product_name VARCHAR(5),
+  price INT
+);
+
+-- Insert data into the menu table
+INSERT INTO menu (product_id, product_name, price) VALUES
+  (1, 'sushi', 10),
+  (2, 'curry', 15),
+  (3, 'ramen', 12);
+
+-- Create the members table
+CREATE TABLE members (
+  customer_id VARCHAR(1),
+  join_date DATE
+);
+
+-- Insert data into the members table
+INSERT INTO members (customer_id, join_date) VALUES
+  ('A', '2021-01-07'),
+  ('B', '2021-01-09');
 
 ---
 
 ### Table 1: sales
 The sales table captures all customer_id level purchases with an corresponding order_date and product_id information for when and what menu items were ordered.
 
-    SELECT *
-    FROM dannys_diner.sales;
+SELECT *
+FROM dannys_diner.sales;
 
-| customer_id | order_date               | product_id |
-| ----------- | ------------------------ | ---------- |
-| A           | 2021-01-01T00:00:00.000Z | 1          |
-| A           | 2021-01-01T00:00:00.000Z | 2          |
-| A           | 2021-01-07T00:00:00.000Z | 2          |
-| A           | 2021-01-10T00:00:00.000Z | 3          |
-| A           | 2021-01-11T00:00:00.000Z | 3          |
-| A           | 2021-01-11T00:00:00.000Z | 3          |
-| B           | 2021-01-01T00:00:00.000Z | 2          |
-| B           | 2021-01-02T00:00:00.000Z | 2          |
-| B           | 2021-01-04T00:00:00.000Z | 1          |
-| B           | 2021-01-11T00:00:00.000Z | 1          |
-| B           | 2021-01-16T00:00:00.000Z | 3          |
-| B           | 2021-02-01T00:00:00.000Z | 3          |
-| C           | 2021-01-01T00:00:00.000Z | 3          |
-| C           | 2021-01-01T00:00:00.000Z | 3          |
-| C           | 2021-01-07T00:00:00.000Z | 3          |
+| customer_id | order_date | product_id |
+| ----------- | ---------- | ---------- |
+| A           | 2021-01-01 | 1          |
+| A           | 2021-01-01 | 2          |
+| A           | 2021-01-07 | 2          |
+| A           | 2021-01-10 | 3          |
+| A           | 2021-01-11 | 3          |
+| A           | 2021-01-11 | 3          |
+| B           | 2021-01-01 | 2          |
+| B           | 2021-01-02 | 2          |
+| B           | 2021-01-04 | 1          |
+| B           | 2021-01-11 | 1          |
+| B           | 2021-01-16 | 3          |
+| B           | 2021-02-01 | 3          |
+| C           | 2021-01-01 | 3          |
+| C           | 2021-01-01 | 3          |
+| C           | 2021-01-07 | 3          |
+
 
 ### Table 2: menu
 The menu table maps the product_id to the actual product_name and price of each menu item.
 
-    SELECT *
-    FROM dannys_diner.menu;
+SELECT *
+FROM dannys_diner.menu;
 
 | product_id | product_name | price |
 | ---------- | ------------ | ----- |
@@ -118,16 +120,18 @@ The menu table maps the product_id to the actual product_name and price of each 
 | 2          | curry        | 15    |
 | 3          | ramen        | 12    |
 
+---
+
+[View on DB Fiddle](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/6266)
+
 ### Table 3: members
 The final members table captures the join_date when a customer_id joined the beta version of the Danny’s Diner loyalty program.
 
-    SELECT *
-    FROM dannys_diner.members;
+SELECT *
+FROM dannys_diner.members;
 
-| customer_id | join_date                |
-| ----------- | ------------------------ |
-| A           | 2021-01-07T00:00:00.000Z |
-| B           | 2021-01-09T00:00:00.000Z |
-
-
+| customer_id | join_date  |
+| ----------- | ---------- |
+| A           | 2021-01-07 |
+| B           | 2021-01-09 |
 
