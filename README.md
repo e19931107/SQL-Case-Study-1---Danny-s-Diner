@@ -86,8 +86,8 @@ All datasets exist within the dannys_diner database schema - be sure to include 
 ### Table 1: sales
 The sales table captures all customer_id level purchases with an corresponding order_date and product_id information for when and what menu items were ordered.
 
-SELECT *
-FROM dannys_diner.sales;
+    SELECT *
+    FROM dannys_diner.sales;
 
 | customer_id | order_date | product_id |
 | ----------- | ---------- | ---------- |
@@ -111,8 +111,8 @@ FROM dannys_diner.sales;
 ### Table 2: menu
 The menu table maps the product_id to the actual product_name and price of each menu item.
 
-SELECT *
-FROM dannys_diner.menu;
+    SELECT *
+    FROM dannys_diner.menu;
 
 | product_id | product_name | price |
 | ---------- | ------------ | ----- |
@@ -120,15 +120,12 @@ FROM dannys_diner.menu;
 | 2          | curry        | 15    |
 | 3          | ramen        | 12    |
 
----
-
-[View on DB Fiddle](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/6266)
 
 ### Table 3: members
 The final members table captures the join_date when a customer_id joined the beta version of the Danny’s Diner loyalty program.
 
-SELECT *
-FROM dannys_diner.members;
+    SELECT *
+    FROM dannys_diner.members;
 
 | customer_id | join_date  |
 | ----------- | ---------- |
