@@ -2,7 +2,7 @@
 SELECT s.customer_id,
 SUM(f.price) AS total_amount
 FROM dannys_diner.sales AS s
-FULL JOIN dannys_diner.menu AS f 
+LEFT JOIN dannys_diner.menu AS f 
 ON s.product_id = f.product_id
 GROUP BY s.customer_id
 ORDER BY s.customer_id;
@@ -36,24 +36,40 @@ s.order_date,
 s.product_id,
 m.product_name
 FROM dannys_diner.sales as s
-FULL JOIN dannys_diner.menu as m
+LEFT JOIN dannys_diner.menu as m
 ON s.product_id = m.product_id
 WHERE order_date = (SELECT MIN(order_date) FROM dannys_diner.sales);
 
--- Result:
-| customer_id | order_date               | product_id | product_name |
-| ----------- | ------------------------ | ---------- | ------------ |
-| A           | 2021-01-01T00:00:00.000Z | 1          | sushi        |
-| B           | 2021-01-01T00:00:00.000Z | 2          | curry        |
-| A           | 2021-01-01T00:00:00.000Z | 2          | curry        |
-| C           | 2021-01-01T00:00:00.000Z | 3          | ramen        |
-| C           | 2021-01-01T00:00:00.000Z | 3          | ramen        |
+| customer_id | order_date | product_id | product_name |
+| ----------- | ---------- | ---------- | ------------ |
+| A           | 2021-01-01 | 1          | sushi        |
+| A           | 2021-01-01 | 2          | curry        |
+| B           | 2021-01-01 | 2          | curry        |
+| C           | 2021-01-01 | 3          | ramen        |
+| C           | 2021-01-01 | 3          | ramen        |
 
 
 -- 4. What is the most purchased item on the menu and how many times was it purchased by all customers?
+SELECT m.product_name AS product_name,
+m.product_id AS product_id,
+COUNT(m.price) as order_times
+FROM dannys_diner.sales AS s
+LEFT JOIN dannys_diner.menu AS m
+ON s.product_id = m.product_id
+GROUP BY m.product_name, m.product_id
+ORDER BY order_times DESC;
+
+-- Result:
+| product_name | product_id | order_times |
+| ------------ | ---------- | ----------- |
+| ramen        | 3          | 8           |
+| curry        | 2          | 4           |
+| sushi        | 1          | 3           |
 
 
 -- 5. Which item was the most popular for each customer?
+
+
 -- 6. Which item was purchased first by the customer after they became a member?
 -- 7. Which item was purchased just before the customer became a member?
 -- 8. What is the total items and amount spent for each member before they became a member?
