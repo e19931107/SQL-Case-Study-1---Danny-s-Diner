@@ -68,6 +68,30 @@ ORDER BY order_times DESC;
 
 
 -- 5. Which item was the most popular for each customer?
+    WITH hot_selling_product_for_each_customer AS
+    (
+       SELECT 
+          s.customer_id, 
+          m.product_name, 
+          COUNT(m.product_id) AS order_count,
+          DENSE_RANK() OVER(PARTITION BY s.customer_id ORDER BY COUNT(s.customer_id) DESC) AS `rank`
+       FROM dannys_diner.menu AS m
+       LEFT JOIN dannys_diner.sales AS s
+          ON m.product_id = s.product_id
+       GROUP BY s.customer_id, m.product_name
+    )
+    
+    SELECT customer_id, product_name, order_count
+    FROM hot_selling_product_for_each_customer
+    WHERE `rank` = 1;
+
+| customer_id | product_name | order_count |
+| ----------- | ------------ | ----------- |
+| A           | ramen        | 3           |
+| B           | sushi        | 2           |
+| B           | curry        | 2           |
+| B           | ramen        | 2           |
+| C           | ramen        | 3           |
 
 
 -- 6. Which item was purchased first by the customer after they became a member?
