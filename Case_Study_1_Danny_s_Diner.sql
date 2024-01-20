@@ -1,4 +1,3 @@
--- Active: 1705586941775@@127.0.0.1@3306
 -- 1. What is the total amount each customer spent at the restaurant?
 
 SELECT s.customer_id,
@@ -9,7 +8,7 @@ ON s.product_id = f.product_id
 GROUP BY s.customer_id
 ORDER BY s.customer_id;
 
-Result:
+-- Result:
 | customer_id | total_amount |
 | ----------- | --- |
 | A           | 76  |
@@ -25,7 +24,7 @@ FROM dannys_diner.sales AS s
 GROUP BY s.customer_id
 ORDER BY s.customer_id;
 
-Result:
+-- Result:
 | customer_id | count_of_customer_visit |
 | ----------- | ----------------------- |
 | A           | 4                       |
