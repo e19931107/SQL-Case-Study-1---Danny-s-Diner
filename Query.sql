@@ -126,6 +126,7 @@ https://www.mysqltutorial.org/mysql-window-functions/mysql-dense_rank-function/
 | A           | 2021-01-07 | 2021-01-07 | 2          | curry        |
 | B           | 2021-01-09 | 2021-01-11 | 1          | sushi        |
 
+-- https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/6267
 
 -- 7. Which item was purchased just before the customer became a member?
 -- 8. What is the total items and amount spent for each member before they became a member?
