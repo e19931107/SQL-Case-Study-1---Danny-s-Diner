@@ -126,9 +126,34 @@ https://www.mysqltutorial.org/mysql-window-functions/mysql-dense_rank-function/
 | A           | 2021-01-07 | 2021-01-07 | 2          | curry        |
 | B           | 2021-01-09 | 2021-01-11 | 1          | sushi        |
 
--- https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/6267
 
 -- 7. Which item was purchased just before the customer became a member?
+with last_item_purchased_before_become_member_cte AS
+(
+SELECT s.customer_id, m.join_date, s.order_date, s.product_id,
+DENSE_RANK() OVER (PARTITION BY s.customer_id ORDER BY s.order_date DESC) AS ranking
+FROM dannys_diner.sales AS s
+LEFT JOIN dannys_diner.members AS m
+ON s.customer_id = m.customer_id
+WHERE s.order_date <= m.join_date
+)
+
+SELECT x.customer_id,
+x.join_date,
+x.order_date,
+x.product_id,
+m.product_name
+FROM last_item_purchased_before_become_member_cte AS x
+LEFT JOIN dannys_diner.menu AS m
+ON x.product_id = m.product_id
+WHERE ranking = '1';
+
+| customer_id | join_date  | order_date | product_id | product_name |
+| ----------- | ---------- | ---------- | ---------- | ------------ |
+| A           | 2021-01-07 | 2021-01-07 | 2          | curry        |
+| B           | 2021-01-09 | 2021-01-04 | 1          | sushi        |
+
+
 -- 8. What is the total items and amount spent for each member before they became a member?
 -- 9.  If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
 -- 10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
